@@ -1,14 +1,19 @@
 pipeline {
     agent any
 
+    environment {
+        IMAGE_NAME="python-web-app"
+        IMAGE_TAG="latest"
+    }
+
     stages {
         stage("Build Docker image") {
             steps {
                 script {
-                    sh '''
+                    sh """
                         cd examples/python-web-app
-                        docker build -t python-web-app:latest .
-                    '''
+                        docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
+                    """
                 }
             }
         }
@@ -16,7 +21,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        docker run -d -p 8001:8000 python-web-app:latest
+                        docker run -d -p 8001:8000 ${IMAGE_NAME}:${IMAGE_TAG}
                     '''
                 }
             }
