@@ -1,5 +1,6 @@
 FROM ubuntu:latest
 
+USER root 
 # Set the working directory in the image
 WORKDIR /app
 
