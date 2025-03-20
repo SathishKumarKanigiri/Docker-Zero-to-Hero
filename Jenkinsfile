@@ -1,4 +1,3 @@
-// dummy commit
 pipeline {
     agent any
 
